@@ -7,7 +7,7 @@ const TaskColumn = ({ title, color }) => {
   const filter = useSelector((store) => store?.result);
 
   return (
-    <div className=" bg-white flex flex-col rounded-lg w-1/6  ">
+    <div className=" bg-white flex flex-col w-7/12 min-h-36 mx-auto rounded-lg lg:w-1/6   ">
       <header
         style={{ backgroundColor: color }}
         className={`text-center p-2 text-white rounded-t-lg`}

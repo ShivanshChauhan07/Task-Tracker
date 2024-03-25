@@ -52,9 +52,9 @@ const Filter = () => {
   if (result !== undefined) dispatch(addResult(result));
 
   return (
-    <div className=" flex flex-row justify-between px-4 ">
-      <div className="w-3/5 flex flex-col gap-y-4 border-2 border-black">
-        <div className=" flex flex-row justify-around">
+    <div className="flex flex-col gap-y-2  lg:flex lg:flex-row lg:justify-between lg:px-4 ">
+      <div className=" w-3/5 flex flex-col gap-y-4 min-[320px]:mx-auto lg:mx-0">
+        <div className="flex flex-col  lg:flex lg:flex-row lg:justify-around">
           <h6 className="text-lg font-medium">Filter By:</h6>
           <input
             className="border-2 border-zinc-200 px-2 rounded-md text-slate-500"
@@ -65,7 +65,7 @@ const Filter = () => {
           />
           <select
             name="priority"
-            className=" border-2 border-zinc-200 rounded-md text-slate-500 w-1/5"
+            className=" border-2 border-zinc-200 rounded-md text-slate-500 lg:w-1/5"
             value={select}
             onChange={(e) => setSelect(e.target.value)}
             defaultValue="priority"
@@ -78,18 +78,18 @@ const Filter = () => {
             <option value="P2">P2</option>
           </select>
           <input
-            className="border-2 border-zinc-200 px-2 rounded-md text-slate-500 w-1/4"
+            className="border-2 border-zinc-200 px-2 rounded-md text-slate-500 lg:w-1/4"
             type="date"
             placeholder="DD/MM/YYY - DD/MM/YYY"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-        <div className=" flex justify-start px-7 gap-x-14">
+        <div className=" flex justify-start lg:px-7 lg:gap-x-14">
           <h6 className="text-lg font-medium">Sort By:</h6>
           <select
             name="priority"
-            className="border-2 border-zinc-200 rounded-md text-slate-500 w-1/5"
+            className="border-2 border-zinc-200 rounded-md text-slate-500 lg:w-1/5"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
           >
@@ -101,9 +101,9 @@ const Filter = () => {
           </select>
         </div>
       </div>
-      <div className=" ">
+      <div className="flex justify-center items-start">
         <button
-          className="rounded-sm bg-[#25689c] text-white p-2 px-8 w-56 "
+          className="rounded-sm bg-[#25689c] text-white p-2 px-8  lg:w-56 "
           onClick={() => dispatch(modalOpenCreate(true))}
         >
           {" "}

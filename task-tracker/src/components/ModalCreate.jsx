@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { modalClose } from "./utils/modalSlice";
 import { addPendingTask } from "./utils/pendingSlice";
@@ -10,6 +10,13 @@ const ModalCreate = () => {
   const assigneeRef = useRef(null);
   const priorityRef = useRef(null);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
   return (
     <div className="absolute w-full h-full  bg-black/35">
       <div className="z-10 absolute top-1/2 left-1/2 border-2 rounded-lg lg:w-3/12 -translate-x-40 -translate-y-40">

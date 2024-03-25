@@ -17,7 +17,7 @@ const Task = ({
   const [menu, setMenu] = useState(false);
 
   return (
-    <div className="bg-[#f3f1f2] rounded-sm p-2 lg:h-1/2  flex flex-col justify-around box-border">
+    <div className="bg-[#f3f1f2] rounded-sm p-2 h-1/2  flex flex-col justify-around box-border">
       <header className="flex justify-between border-b border-zinc-500 py-2">
         <h5>{title}</h5>
         <p className="bg-[#24689e] text-white text-xs p-1">{priority}</p>

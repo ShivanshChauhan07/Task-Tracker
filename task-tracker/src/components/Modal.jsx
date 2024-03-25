@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalClose, modalOpenEdit } from "./utils/modalSlice";
 import { currentEditModal } from "./utils/editModalSlice";
@@ -10,10 +10,16 @@ const Modal = () => {
   const { title, description, team, assignees, priority, status } = data;
   const [checkStatus, setCheckStatus] = useState(status);
   const [updatePriority, setUpdatePriority] = useState(priority);
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
 
   return (
     <div className=" absolute w-full h-full  bg-black/35">
-      <div className=" z-10 border-2 absolute  rounded-md w-1/5 h-4/6 top-1/2 left-1/2 -translate-x-40 -translate-y-60">
+      <div className=" z-10 border-2 absolute  rounded-md lg:w-1/5 lg:h-4/6 top-1/2 left-1/2 lg:-translate-x-40 lg:-translate-y-60 min-[320px]:-translate-x-36 min-[320px]:-translate-y-40">
         <header className="flex justify-between p-2 bg-white">
           <h4>EDIT TASK</h4>
           <span
