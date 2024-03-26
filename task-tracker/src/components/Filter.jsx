@@ -19,7 +19,10 @@ const Filter = () => {
   let flag = true;
 
   // -------------------------Name Filter logic----------------------------
-  if (data && name) result = data.filter((item) => item.assignees === name);
+  if (data && name)
+    result = data.filter(
+      (item) => item.assignees.toLowerCase() === name.toLowerCase()
+    );
   // --------------------------xxxxxxxxxxxxxxxx----------------------------
 
   //----------------- Priority Select Option Filter logic-------------------
@@ -118,7 +121,7 @@ const Filter = () => {
         </div>
       </div>
       <div
-        className="flex flex-col justify-center lg:items-start lg:w-56"
+        className="flex flex-col justify-start lg:items-start lg:w-56"
         id="toast"
       >
         <button
