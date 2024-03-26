@@ -19,7 +19,10 @@ const Filter = () => {
   let flag = true;
 
   // -------------------------Name Filter logic----------------------------
-  if (data && name) result = data.filter((item) => item.assignees === name);
+  if (data && name)
+    result = data.filter(
+      (item) => item.assignees.toLowerCase() === name.toLowerCase()
+    );
   // --------------------------xxxxxxxxxxxxxxxx----------------------------
 
   //----------------- Priority Select Option Filter logic-------------------
