@@ -14,8 +14,8 @@ const Task = ({
   endDate,
 }) => {
   const dispatch = useDispatch();
-  const [menu, setMenu] = useState(false);
-  const [deleteDisable, setDeleteDisable] = useState(false);
+  const [menu, setMenu] = useState(false); // used to manage the state of the edit/ delete dialog box
+  const [deleteDisable, setDeleteDisable] = useState(false); // used to manage delete option availability as completed task can't be deleted.
 
   return (
     <div className="bg-[#f3f1f2] rounded-sm p-2 h-1/2  flex flex-col justify-around box-border">
