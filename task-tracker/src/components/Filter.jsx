@@ -50,7 +50,7 @@ const Filter = () => {
     );
   else if (data && date) {
     result = data.filter((item) => {
-      console.log(item);
+      // console.log(item);
       return (
         item.startDate === date ||
         item.endDate === date ||
@@ -60,27 +60,12 @@ const Filter = () => {
     });
   }
 
-  // if (data && date) {
-  //   const givenDate = new Date(date);
-  //   console.log(date);
-  //   result = data.filter((item) => {
-  //     let start = new Date(item.startDate);
-  //     let end = new Date(item.endDate);
-  //     if (end > givenDate) {
-  //       console.log("I m true");
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-  //   console.log(result);
-  // }
-
   //-------------------------xxxxxxxxxxxxxxxxx--------------------------------
   if (date && result.length === 0) flag = true;
   else flag = false;
 
   if (result !== undefined) dispatch(addResult(result));
-  console.log(date);
+  // console.log(date);
 
   return (
     <div className="flex flex-col gap-y-2  lg:flex lg:flex-row lg:justify-between lg:px-4 ">

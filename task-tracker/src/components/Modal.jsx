@@ -134,7 +134,7 @@ const Modal = () => {
               let date = "";
               dispatch(modalClose());
               if (checkStatus === "Completed") date = new Date().toISOString();
-              console.log(date);
+              // console.log(date);
               dispatch(
                 findTask({
                   ...data,
