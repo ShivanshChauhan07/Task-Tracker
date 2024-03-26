@@ -15,6 +15,7 @@ const Task = ({
 }) => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
+  const [deleteDisable, setDeleteDisable] = useState(false);
 
   return (
     <div className="bg-[#f3f1f2] rounded-sm p-2 h-1/2  flex flex-col justify-around box-border">
@@ -43,6 +44,8 @@ const Task = ({
                 endDate: endDate,
               };
               dispatch(currentEditModal(data));
+              if (status === "Completed") setDeleteDisable(true);
+              else setDeleteDisable(false);
             }}
           >
             <i className="fa-solid fa-ellipsis-vertical"></i>
@@ -61,15 +64,21 @@ const Task = ({
             >
               Edit
             </h5>
-            <h5
-              className="border-2 border-t-white hover:cursor-pointer hover:bg-zinc-300"
-              onClick={() => {
-                setMenu(!menu);
-                dispatch(modalOpenDelete(true));
-              }}
-            >
-              Delete
-            </h5>
+            <div className={deleteDisable && "cursor-not-allowed"}>
+              <h5
+                className={
+                  deleteDisable
+                    ? "border-2 border-t-white  pointer-events-none hover:bg-zinc-300  text-red-500"
+                    : "border-2 border-t-white hover:cursor-pointer hover:bg-zinc-300"
+                }
+                onClick={() => {
+                  setMenu(!menu);
+                  dispatch(modalOpenDelete(true));
+                }}
+              >
+                Delete
+              </h5>
+            </div>
           </div>
         </div>
         <div>
