@@ -5,6 +5,7 @@ import { currentEditModal } from "./utils/editModalSlice";
 import { findTask } from "./utils/pendingSlice";
 
 const Modal = () => {
+  //  This modal is used to edit the selected task.
   const dispatch = useDispatch();
   const data = useSelector((store) => store?.editModal);
   const { title, description, team, assignees, priority, status } = data;
@@ -24,6 +25,7 @@ const Modal = () => {
     setCheckStatus("Pending");
     dispatch(
       findTask({
+        // find task is a action of pending slice which find and update the task in the state.
         ...data,
         priority: "P0",
         status: "Pending",

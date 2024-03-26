@@ -3,6 +3,7 @@ import Task from "./Task";
 import { useSelector } from "react-redux";
 
 const TaskColumn = ({ title, color }) => {
+  //Use Two different store slice for using Filter data and original Data Separate.
   const data = useSelector((store) => store?.pending);
   const filter = useSelector((store) => store?.result);
 

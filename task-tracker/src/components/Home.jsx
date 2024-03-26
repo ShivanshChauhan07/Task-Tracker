@@ -7,6 +7,7 @@ import ModalDelete from "./ModalDelete";
 import ModalCreate from "./ModalCreate";
 
 const Home = () => {
+  // Used for modal Creation in home page because modal should cover whole screen area.
   const edit = useSelector((store) => store?.modal?.edit);
   const deleted = useSelector((store) => store?.modal?.delete);
   const create = useSelector((store) => store?.modal?.create);

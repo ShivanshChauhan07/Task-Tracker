@@ -4,6 +4,7 @@ import { modalClose } from "./utils/modalSlice";
 import { addPendingTask } from "./utils/pendingSlice";
 
 const ModalCreate = () => {
+  //This modal is used to create new task
   const titleRef = useRef(null);
   const desRef = useRef(null);
   const teamRef = useRef(null);
@@ -75,7 +76,6 @@ const ModalCreate = () => {
               className="text-white p-1 px-2 rounded-md bg-blue-600 "
               onClick={() => {
                 const date = new Date().toISOString();
-                //date.split("T")[0]
                 const data = {
                   title: titleRef.current.value,
                   description: desRef.current.value,
