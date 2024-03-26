@@ -18,12 +18,12 @@ const Task = ({
   const [deleteDisable, setDeleteDisable] = useState(false); // used to manage delete option availability as completed task can't be deleted.
 
   return (
-    <div className="bg-[#f3f1f2] rounded-sm p-2 h-1/2  flex flex-col justify-around box-border">
+    <div className="bg-[#f3f1f2] rounded-sm p-2 max-h-1/2  flex flex-col justify-around box-border gap-y-4">
       <header className="flex justify-between border-b border-zinc-500 py-2">
         <h5>{title}</h5>
         <p className="bg-[#24689e] text-white text-xs p-1">{priority}</p>
       </header>
-      <div className="flex flex-col  flex-1 justify-around">
+      <div className="flex flex-col  flex-1 justify-around gap-y-2">
         <div>
           <p className="text-xs">{description}</p>
         </div>

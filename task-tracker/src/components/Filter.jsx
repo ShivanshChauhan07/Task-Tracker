@@ -121,7 +121,7 @@ const Filter = () => {
         </div>
       </div>
       <div
-        className="flex flex-col justify-center lg:items-start lg:w-56"
+        className="flex flex-col justify-start lg:items-start lg:w-56"
         id="toast"
       >
         <button
