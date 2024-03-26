@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalOpenCreate } from "./utils/modalSlice";
 import { addResult } from "./utils/resultSlice";
@@ -10,11 +10,13 @@ const Filter = () => {
   const [select, setSelect] = useState("priority");
   const [sort, setSort] = useState("priority");
   const [date, setDate] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState("");
   //--------------Redux Store Hooks--------------
   const dispatch = useDispatch();
   const data = useSelector((store) => store?.pending);
   //----------------variables---------------------
   let result = "";
+  let flag = true;
 
   // -------------------------Name Filter logic----------------------------
   if (data && name) result = data.filter((item) => item.assignees === name);
@@ -43,13 +45,27 @@ const Filter = () => {
 
   //-------------------------Date Filter Logic-------------------------------
   if (result.length && date)
-    result = result.filter((item) => item.startDate === date);
-  else if (data && date)
-    result = data.filter((item) => item.startDate === date);
+    result = result.filter(
+      (item) => item.startDate === date || item.endDate === date
+    );
+  else if (data && date) {
+    result = data.filter((item) => {
+      // console.log(item);
+      return (
+        item.startDate === date ||
+        item.endDate === date ||
+        (new Date(item.startDate) < new Date(date) &&
+          new Date(date) < new Date(item.endDate))
+      );
+    });
+  }
 
   //-------------------------xxxxxxxxxxxxxxxxx--------------------------------
+  if (date && result.length === 0) flag = true;
+  else flag = false;
 
   if (result !== undefined) dispatch(addResult(result));
+  // console.log(date);
 
   return (
     <div className="flex flex-col gap-y-2  lg:flex lg:flex-row lg:justify-between lg:px-4 ">
@@ -101,7 +117,10 @@ const Filter = () => {
           </select>
         </div>
       </div>
-      <div className="flex justify-center items-start">
+      <div
+        className="flex flex-col justify-center lg:items-start lg:w-56"
+        id="toast"
+      >
         <button
           className="rounded-sm bg-[#25689c] text-white p-2 px-8  lg:w-56 "
           onClick={() => dispatch(modalOpenCreate(true))}
@@ -109,6 +128,9 @@ const Filter = () => {
           {" "}
           Add New Task
         </button>
+        <p className={flag ? "text-red-500" : "hidden"}>
+          No Result Matched ! Showing all Task.
+        </p>
       </div>
     </div>
   );

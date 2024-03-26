@@ -19,12 +19,12 @@ const TaskColumn = ({ title, color }) => {
           ? filter.map((singleItem, index) => {
               if (singleItem.status === title)
                 return <Task key={index} {...singleItem} />;
+
               return;
             })
           : data.map((singleItem, index) => {
               if (singleItem.status === title)
                 return <Task key={index} {...singleItem} />;
-              return;
             })}
       </div>
     </div>

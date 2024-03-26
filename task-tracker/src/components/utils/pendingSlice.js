@@ -14,7 +14,7 @@ const pendingSlice = createSlice({
             ...state[index],
             priority: payload.priority,
             status: payload.status,
-            endDate: payload.date,
+            endDate: payload.endDate,
           };
           return;
         }

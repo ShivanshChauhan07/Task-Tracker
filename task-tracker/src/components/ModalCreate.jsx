@@ -18,8 +18,8 @@ const ModalCreate = () => {
     };
   }, []);
   return (
-    <div className="absolute w-full h-full  bg-black/35">
-      <div className="z-10 absolute top-1/2 left-1/2 border-2 rounded-lg lg:w-3/12 -translate-x-40 -translate-y-40">
+    <div className="z-10 fixed w-full h-full  bg-black/35">
+      <div className="z-20 absolute top-1/2 left-1/2 border-2 rounded-lg lg:w-3/12 -translate-x-40 -translate-y-40">
         <header className="flex bg-white justify-between px-4">
           <h3 className="text-lg font-semibold">CREATE A TASK</h3>
           <span
@@ -83,7 +83,7 @@ const ModalCreate = () => {
                   assignees: assigneeRef.current.value,
                   priority: priorityRef.current.value,
                   status: "Pending",
-                  startDate: "2024-03-15",
+                  startDate: date.split("T")[0],
                   endDate: "",
                 };
                 dispatch(addPendingTask(data));
