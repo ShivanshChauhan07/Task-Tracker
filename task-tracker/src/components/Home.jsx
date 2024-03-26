@@ -11,7 +11,7 @@ const Home = () => {
   const deleted = useSelector((store) => store?.modal?.delete);
   const create = useSelector((store) => store?.modal?.create);
   return (
-    <div className="bg-gradient-to-r from-[#f4dbf9] to-[#dfdbfc] min-h-screen h-fit">
+    <div className="bg-gradient-to-r from-[#f4dbf9] to-[#dfdbfc] min-h-screen h-fit border-2 border-black">
       {edit && <Modal />}
       {deleted && <ModalDelete />}
       {create && <ModalCreate />}

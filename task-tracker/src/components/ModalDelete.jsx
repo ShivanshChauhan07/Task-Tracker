@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { modalClose } from "./utils/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "./utils/pendingSlice";
@@ -6,10 +6,16 @@ import { deleteTask } from "./utils/pendingSlice";
 const ModalDelete = () => {
   const dispatch = useDispatch();
   const currentTask = useSelector((store) => store?.editModal);
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, []);
 
   return (
-    <div className="absolute w-full h-full  bg-black/35">
-      <div className="border-2 absolute w-1/4 h-1/5  rounded-md  top-1/2 left-1/2 -translate-x-40 -translate-y-40">
+    <div className="z-10 fixed w-screen h-screen  bg-black/35">
+      <div className="border-2 z-20 absolute lg:w-1/4 lg:h-1/5  rounded-md  top-1/2 left-1/2 lg:-translate-x-40 lg:-translate-y-40 min-[320px]:-translate-x-28 min-[320px]:-translate-y-12">
         <header className="flex justify-between p-2 bg-white">
           <h4>DELETE TASK</h4>
           <span

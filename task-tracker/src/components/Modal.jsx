@@ -10,16 +10,48 @@ const Modal = () => {
   const { title, description, team, assignees, priority, status } = data;
   const [checkStatus, setCheckStatus] = useState(status);
   const [updatePriority, setUpdatePriority] = useState(priority);
+  const [button, setbutton] = useState(true);
+  const validStatus = [
+    "Pending",
+    "In Progress",
+    "Completed",
+    "Deloyed",
+    "Deffered",
+  ];
+
+  const resetHandler = () => {
+    setUpdatePriority("P0");
+    setCheckStatus("Pending");
+    dispatch(
+      findTask({
+        ...data,
+        priority: "P0",
+        status: "Pending",
+        endDate: "",
+      })
+    );
+    dispatch(modalClose());
+  };
+
   useEffect(() => {
     document.body.style.overflowY = "hidden";
     return () => {
       document.body.style.overflowY = "scroll";
     };
   }, []);
+  useEffect(() => {
+    if (validStatus.includes(checkStatus)) {
+      document.getElementById("submit").style.backgroundColor = "#24689e";
+      setbutton(false);
+    } else {
+      document.getElementById("submit").style.backgroundColor = "#1a4264";
+      setbutton(true);
+    }
+  }, [checkStatus]);
 
   return (
-    <div className=" absolute w-full h-full  bg-black/35">
-      <div className=" z-10 border-2 absolute  rounded-md lg:w-1/5 lg:h-4/6 top-1/2 left-1/2 lg:-translate-x-40 lg:-translate-y-60 min-[320px]:-translate-x-36 min-[320px]:-translate-y-40">
+    <div className=" z-20 fixed top-0 left-0 w-full h-full  bg-black/35">
+      <div className=" z-20 border-2 fixed  rounded-md lg:w-1/5 lg:h-4/6 top-1/2 left-1/2 lg:-translate-x-40 lg:-translate-y-60 min-[320px]:-translate-x-36 min-[320px]:-translate-y-40">
         <header className="flex justify-between p-2 bg-white">
           <h4>EDIT TASK</h4>
           <span
@@ -95,18 +127,20 @@ const Modal = () => {
         <footer className="bg-white h-[7%] flex justify-end gap-x-2 py-1">
           <button
             className="rounded-sm px-2 w-20 text-white bg-[#24689e]"
+            id="submit"
             type="button"
+            disabled={button}
             onClick={() => {
               let date = "";
               dispatch(modalClose());
-              if (checkStatus === "Completed")
-                date = new Date().toLocaleDateString();
+              if (checkStatus === "Completed") date = new Date().toISOString();
+              console.log(date);
               dispatch(
                 findTask({
                   ...data,
                   priority: updatePriority,
                   status: checkStatus,
-                  endDate: date,
+                  endDate: date.split("T")[0],
                 })
               );
             }}
@@ -116,6 +150,7 @@ const Modal = () => {
           <button
             className="rounded-sm px-2 w-20 text-white bg-[#24689e]"
             type="button"
+            onClick={resetHandler}
           >
             Reset
           </button>
